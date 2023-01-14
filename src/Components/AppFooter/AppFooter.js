@@ -10,7 +10,7 @@ const AppFooter = () => {
           <p>
             Q-Quiz
             <br />
-            All rights reserved to Fahim Faisal Khan.
+            &#169; 2023 Fahim Faisal Khan, All rights reserved.
           </p>
         </div>
 

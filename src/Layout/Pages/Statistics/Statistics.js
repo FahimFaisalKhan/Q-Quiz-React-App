@@ -11,11 +11,10 @@ import {
   Legend,
 } from "recharts";
 const Statistics = () => {
-  const data = useLoaderData();
-  const topics = data.data;
+  const topics = useLoaderData();
 
   const info = topics.map((topic) => {
-    return { name: topic.name, Questions: topic.total };
+    return { name: topic.data.name, Questions: topic.data.total };
   });
   console.log(info);
   return (

@@ -10,9 +10,10 @@ import {
 import Layout from "./Layout/Layout";
 import Statistics from "./Layout/Pages/Statistics/Statistics";
 import Topics from "./Layout/Pages/Topics/Topics";
-import Blog from "./Layout/Pages/Blog/Blog";
+import About from "./Layout/Pages/About/About";
 import Questions from "./Layout/Pages/Questions/Questions";
 import ErrorPage from "./Layout/Pages/ErrorPage/ErrorPage";
+import Profile from "./Layout/Pages/Profile/Profile";
 
 // You can do this:
 const router = createBrowserRouter(
@@ -25,24 +26,27 @@ const router = createBrowserRouter(
       <Route
         path="/"
         element={<Topics />}
-        loader={async () =>
-          fetch("https://openapi.programming-hero.com/api/quiz")
-        }
+        loader={async () => fetch("quiz.json")}
       />
       <Route
         path="/statistics"
         element={<Statistics></Statistics>}
-        loader={async () =>
-          fetch("https://openapi.programming-hero.com/api/quiz")
-        }
+        loader={async () => fetch("quiz.json")}
       />
-      <Route path="/blog" element={<Blog></Blog>} />
+      <Route path="/about" element={<About />} />
+      <Route path="/profile" element={<Profile />} />
       <Route
         path="/:id"
         element={<Questions></Questions>}
-        loader={async ({ params }) =>
-          fetch(`https://openapi.programming-hero.com/api/quiz/${params.id}`)
-        }
+        loader={async ({ params }) => {
+          const res = await fetch(`quiz.json`);
+
+          const data = await res.json();
+          console.log(data);
+
+          const topic = data.find((d) => d.data.id === +params.id);
+          return topic;
+        }}
       ></Route>
     </Route>
   )

@@ -4,12 +4,11 @@ import Heading from "../../../Components/Heading/Heading";
 import TopicsComp from "../../../Components/Topics-Comp/TopicsComp";
 
 const Topics = () => {
-  const data = useLoaderData();
-  const topics = data.data;
+  const topics = useLoaderData();
 
   return (
     <div>
-      <Heading></Heading>
+      <Heading topics={topics}></Heading>
       <div className="container mx-auto my-72">
         <TopicsComp topics={topics}></TopicsComp>
       </div>

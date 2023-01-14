@@ -13,15 +13,19 @@ const Navigation = () => {
     setTheme(!theme);
   };
   useEffect(() => {
-    if (theme === false) {
-      document
-        .getElementsByTagName("html")[0]
-        .setAttribute("data-theme", "dark");
-    } else {
-      document
-        .getElementsByTagName("html")[0]
-        .setAttribute("data-theme", "light");
-    }
+    const subscription = () => {
+      if (theme === false) {
+        document
+          .getElementsByTagName("html")[0]
+          .setAttribute("data-theme", "dark");
+      } else {
+        document
+          .getElementsByTagName("html")[0]
+          .setAttribute("data-theme", "light");
+      }
+    };
+    subscription();
+    return () => subscription();
   }, [theme]);
   return (
     <div className="pb-20 flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
@@ -46,18 +50,22 @@ const Navigation = () => {
             </Button>
             <Dropdown.Menu tabIndex={0} className="w-52 menu-compact mt-3">
               <Dropdown.Item>
-                <Link to={"/"}>Topics</Link>
+                <Link to={"/"}>Home</Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to={"/about"}>About</Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to={"/profile"}>Profile</Link>
               </Dropdown.Item>
 
               <Dropdown.Item>
                 <Link to={"/statistics"}>Statistics</Link>
               </Dropdown.Item>
-              <Dropdown.Item>
-                <Link to={"/blog"}>Blog</Link>
-              </Dropdown.Item>
+
               <li tabIndex={0}>
                 <Link className="justify-between">
-                  Light Mode
+                  Mode
                   <svg
                     className="fill-current"
                     xmlns="http://www.w3.org/2000/svg"
@@ -87,26 +95,31 @@ const Navigation = () => {
           <Menu horizontal className="p-0">
             <Menu.Item className="hover:bg-accent-focus rounded-lg ">
               <Link className="active:bg-accent-focus" to={"/"}>
-                Topics
+                Home
               </Link>
             </Menu.Item>
-
+            <Menu.Item className="hover:bg-accent-focus rounded-lg">
+              <Link className="active:bg-accent-focus" to={"/about"}>
+                About
+              </Link>
+            </Menu.Item>
+            <Menu.Item className="hover:bg-accent-focus rounded-lg">
+              <Link className="active:bg-accent-focus" to={"/profile"}>
+                Profile
+              </Link>
+            </Menu.Item>
             <Menu.Item className="hover:bg-accent-focus rounded-lg">
               <Link className="active:bg-accent-focus" to={"/statistics"}>
                 Statistics
               </Link>
             </Menu.Item>
-            <Menu.Item className="hover:bg-accent-focus rounded-lg">
-              <Link className="active:bg-accent-focus" to={"/blog"}>
-                Blog
-              </Link>
-            </Menu.Item>
+
             <Menu.Item
               className="hover:bg-accent-focus rounded-lg"
               tabIndex={0}
             >
               <Link className="active:bg-accent-focus">
-                Light Mode
+                Mode
                 <svg
                   className="fill-current"
                   xmlns="http://www.w3.org/2000/svg"
