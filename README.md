@@ -1,6 +1,6 @@
 # Q-Quiz
 
-### Live Site:
+### Live Site: https://q-quiz-simmi-foundation-interviewtask.netlify.app/
 
 ### Project Description:
 
